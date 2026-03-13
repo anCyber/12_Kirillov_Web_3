@@ -1,0 +1,821 @@
+/* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL *//* GENERAL */
+:root {
+  /* HEADER RELATED */
+  --header-and-footer-background-color: rgba(129, 133, 174, 0.15);
+  --header-buttons-background-color: #E6E4ED;
+  --header-title-background-color: #F0E5FF;
+
+  /* DOWNLOAD RELATED */
+  --heading-color: #F7E6FF;
+  --download-buttons-font: Arial;
+
+  /* PROMO RELATED */
+  --secondary-text-color: rgba(246, 246, 246, 0.70);
+
+  --blurry-background-color: rgba(251, 248, 255, 0.05);
+  --blurry-foreground-color: rgba(251, 248, 255, 0.025);
+
+  --blurry-background-box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.20);
+  --blurry-foreground-box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.125);
+  
+  /* ADS RELATED */
+  --ads-secondary-text-color: rgba(246, 246, 246, 0.45);
+
+  /* FOOTER RELATED */
+  --footer-text-font: 'Poiret One';
+  --footer-text-color: rgba(68, 47, 75, 0.90);
+  --footer-plates-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.40);
+  --discord-fill-color: #6E71FF;
+  --telegram-fill-color: #578FFF;
+  --youtube-fill-color: #FF1616;
+  --github-fill-color: #272525;
+}
+
+body {
+  min-width: 320px;
+  margin: 0px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: wait;
+  background-image: url("../imgs/twisted_hue_background_combined.png");
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.VISUALLY-HIDDEN {
+  display: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+ol,
+li {
+  font-family: Unbounded;
+  margin: 0px;
+}
+
+hr {
+  width: 100%;
+  height: 1vh;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-left: none;
+  border-right: none;
+  margin: 5.25vw 0px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.header_left_button,
+.header_left_buttons_horizontal_flexbox,
+.header_center_title_background,
+.header_right_button,
+.top_download_section,
+.top_download_section_horizontal_flexbox,
+.download_amigo_button_white_background,
+.download_amigo_green_button,
+.download_amigo_button_bottom_section,
+.advertisement_section_background,
+.advertisement_section_foreground,
+.advertisement_content_bottom_section,
+.reasons_section_background,
+.reasons_section_foreground,
+.review_title_foreground,
+.review_section_foreground,
+.single_annoying_ad_vertical_flexbox,
+.annoying_ads_download_buttons_vertical_flexbox,
+.annoying_ad_download_button,
+.footer_name_plate,
+.footer_lab_text_plate,
+.footer_socials_plate,
+.footer_discord_button,
+.footer_telegram_button,
+.footer_youtube_button,
+.footer_github_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_left_button,
+.header_left_button_image,
+.image_top_download_section,
+.download_amigo_green_button_image,
+.download_amigo_white_button_image,
+.annoying_ad_image,
+.annoying_ad_download_button_image,
+.footer_social_icon {
+  aspect-ratio: 1 / 1;
+}
+
+.download_amigo_green_button_text,
+.download_amigo_white_button_text,
+.annoying_ad_download_button_text,
+.annoying_ad_download_button_additional_software_text {
+  font-family: var(--download-buttons-font);
+}
+
+.footer_discord_button,
+.footer_telegram_button,
+.footer_youtube_button,
+.footer_github_button {
+  background-color: transparent;
+  padding: 0.5vh;
+  border-radius: 0.8vw;
+
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.40);
+  transition: all 0.15s;
+}
+
+.footer_discord_button:hover,
+.footer_telegram_button:hover,
+.footer_youtube_button:hover,
+.footer_github_button:hover {
+  border-color: transparent;
+}
+
+.footer_discord_button:hover .discord_icon_path,
+.footer_telegram_button:hover .telegram_icon_path,
+.footer_youtube_button:hover .youtube_icon_path,
+.footer_github_button:hover .github_icon_path { 
+  fill: var(--header-buttons-background-color);
+}
+
+
+
+/* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER *//* HEADER */
+header {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+  column-gap: 2vw;
+
+  padding: 1.5vh 2.5vw;
+
+  background-color: var(--header-and-footer-background-color);
+  border: none;
+  border-bottom: 1px solid rgba(136, 139, 140, 0.05);
+
+  backdrop-filter: blur(6px);
+  z-index: 100;
+}
+
+.header_left_buttons_horizontal_flexbox {
+  column-gap: 10%;
+}
+
+.header_left_button {
+  padding: min(1.0vh, 0.65vw);
+  background-color: var(--header-buttons-background-color);
+  border: none;
+  border-radius: 25%;
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.60);
+  width: 40%;
+}
+.header_left_button_image {
+  width: 72%;
+}
+
+.header_center_title_background {
+  justify-self: center;
+  padding: 0.8vh 5%;
+  background-color: var(--header-title-background-color);
+  border: none;
+  border-radius: 1.25vw;
+
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 1.0);
+}
+
+h1 {
+   color: #535353;
+   font-size: 2.5vw;
+   font-weight: 600;
+}
+
+.header_right_button {
+  padding: min(1.75vh, 1.1vw) min(3vh, 1.5vw);
+  background-color: var(--header-buttons-background-color);
+  border: none;
+  border-radius: 0.67vw;
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.60);
+}
+
+.header_right_button_image {
+  width: 8.5vw;
+}
+
+
+/* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION *//* TOP SECTION */
+.top_download_section {
+  flex-direction: column;
+  margin-top: 7.5vh;
+}
+
+h2 {
+  color: var(--heading-color);
+  font-size: 3.8vw;
+  font-weight: 400;
+  margin-bottom: 5vh;
+}
+
+.top_download_section_horizontal_flexbox {
+  justify-content: space-between;
+
+  height: 12vw;
+  width: 75%;
+}
+
+.image_top_download_section {
+  height: 100%;
+  opacity: 0.9;
+  border-radius: 12%;
+  
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.download_amigo_button_white_background {
+  max-width: 50%;
+  flex: 1;
+  position: relative;
+  align-items: end;
+
+  background-color: #D9D9D9;
+  border: none;
+  border-radius: 2.5vw;
+  height: 80%;
+
+  box-shadow: 0px 0px 6px 6px rgba(22, 22, 22, 0.15);
+  cursor: pointer;
+}
+
+.download_amigo_green_button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 80%;
+
+  border: none;
+  border-radius: 3vw;
+  border-top-left-radius: 2.5vw;
+  border-top-right-radius: 2.5vw;
+
+  column-gap: 1.75vw;
+  background-color: #10CD32;
+
+  box-shadow: 0px 0px 6px 6px rgba(22, 22, 22, 0.30);
+  transition: all 0.25s;
+}
+.download_amigo_green_button:hover {
+  background-color: #24cf43;
+  box-shadow: 0px 0px 8px 8px rgba(255, 255, 255, 0.25);
+}
+.download_amigo_green_button:active,
+.download_amigo_button_white_background:has(.download_amigo_green_button:active)  {
+  opacity: 0.8;
+}
+
+.download_amigo_button_bottom_section {
+  column-gap: 1.5vw;
+  padding-bottom: 0.35vh;
+}
+
+
+.download_amigo_green_button_text {
+  font-size: 4.5vw;
+  color: rgba(255, 255, 255, 1.0);
+}
+
+.download_amigo_green_button_image {
+  height: 3.5vw;
+}
+
+
+.download_amigo_white_button_text {
+  color: #1A1A1A;
+  font-size: 1vw;
+}
+
+.download_amigo_white_button_image {
+  height: 1.25vw;
+  border-radius: 50%;
+  box-shadow: 0px 0px 0.15vw 0.15vw rgba(255, 255, 255, 0.20);
+}
+
+
+/* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION *//* PROMO SECTION */
+.promo_blocks_grid {
+  width: 90%;
+  margin: 0px auto;
+
+  display: grid;
+  grid-template: repeat(2, auto) / 1.25fr 2fr;
+  column-gap: 5vw;
+  row-gap: 6.5vw;
+}
+
+.advertisement_section_background {
+  flex-direction: column;
+  padding: 2vw;
+  border-radius: 3vw;
+
+  background-color: var(--blurry-background-color);
+  backdrop-filter: blur(2px);
+  box-shadow: var(--blurry-background-box-shadow);
+}
+
+.advertisement_section_foreground {
+  flex-direction: column;
+  row-gap: min(3.5vh, 1.5vw);
+
+  width: 100%;
+  height: 100%;
+  padding: 2vh;
+  box-sizing: border-box;
+
+  background-color: var(--blurry-foreground-color);
+  border-radius: 2vw;
+  box-shadow: var(--blurry-foreground-box-shadow);
+  backdrop-filter: blur(2px);
+}
+
+h3 {
+  color: var(--heading-color);
+  font-size: 2.4vw;
+  font-weight: 400;
+  text-align: center;
+}
+
+.advertisement_content_bottom_section {
+  flex-direction: column;
+  row-gap: min(5vh, 2vw);
+}
+
+.advertisement_section_text {
+  width: 75%;
+  font-size: 1.25vw;
+  font-weight: 200;
+  color: var(--secondary-text-color);
+}
+
+.gdz_image {
+  width: 12vw;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+
+  border: none;
+  border-radius: 2vw;
+
+  box-shadow: 0px 0px 0.75vw 0.75vw rgba(255, 255, 255, 0.25),
+              0px 0px 0.4vw 0.4vw rgba(0, 0, 0, 0.15);
+}
+
+.reasons_section_background {
+  padding: 2vw;
+  border-radius: 3vw;
+
+  background-color: var(--blurry-background-color);
+  backdrop-filter: blur(2px);
+  box-shadow: var(--blurry-background-box-shadow);
+}
+
+.reasons_section_foreground {
+  flex-direction: column;
+  justify-content: start;
+  row-gap: min(3.5vh, 1.5vw);
+
+  width: 100%;
+  height: 100%;
+  padding: 2vh;
+  box-sizing: border-box;
+
+  background-color: var(--blurry-foreground-color);
+  border: none;
+  border-radius: 2vw;
+  box-shadow: var(--blurry-foreground-box-shadow);
+  backdrop-filter: blur(2px);
+}
+
+ol {
+  width: 85%;
+  padding: 0px;
+}
+
+li {
+  color: var(--secondary-text-color);
+  font-weight: 200;
+  font-size: 1.25vw;
+}
+
+.reviews_section_background {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  row-gap: 2vh;
+  column-gap: 2vw;
+
+  grid-area: 2 / 1 / span 1 / span 2;
+  background-color: var(--blurry-background-color);
+  border-radius: 3vw;
+
+  backdrop-filter: blur(2px);
+  box-shadow: var(--blurry-background-box-shadow);
+  padding: 2vw;
+}
+
+.review_title_foreground {
+  grid-area: 1 / 1 / span 1 / span 4;
+  width: 100%;
+  padding: 1.75vh 0px;
+  border-radius: 2vw;
+  
+  background-color: var(--blurry-foreground-color);
+  box-shadow: var(--blurry-foreground-box-shadow);
+  backdrop-filter: blur(2px);
+}
+
+.review_section_foreground {
+  flex-direction: column;
+  justify-content: start;
+
+  padding: 2vh;
+  border-radius: 2vw;
+
+  background-color: rgba(251, 248, 255, 0.015);
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+}
+
+h4 {
+  color: rgba(246, 246, 246, 0.85);
+  font-size: 1vw;
+  font-weight: 400;
+  padding-bottom: 1.75vh;
+  text-decoration: underline;
+  text-underline-offset: 0.5vh;
+}
+
+.review_section_text {
+  font-size: 0.8vw;
+  font-weight: 200;
+  color: var(--secondary-text-color);
+}
+
+
+/* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION *//* ADS SECTION */
+.annoying_ads_grid {
+  width: 85%;
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 4vw;
+  
+  justify-items: center;
+}
+
+.single_annoying_ad_vertical_flexbox {
+  flex-direction: column;
+  text-align: center;
+  row-gap: 2vh;
+  background-color: #1A1A1A;
+  border-radius: 2vw;
+  padding: 3vh 1vw;
+
+  cursor: pointer;
+  box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, 0.30),
+              0px 0px 3px 3px rgba(0, 0, 0, 0.40);
+  transition: all 1s;
+}
+.single_annoying_ad_vertical_flexbox:hover {
+  background-image: url("../hypnotic.gif");
+  background-position: center;
+  background-size: cover;
+}
+.single_annoying_ad_vertical_flexbox:hover h5,
+.single_annoying_ad_vertical_flexbox:hover .annoying_ad_link,
+.single_annoying_ad_vertical_flexbox:hover .annoying_ad_text {
+  z-index: -1;
+}
+
+ 
+.annoying_ad_image {
+  width: 80%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20%;
+  box-shadow: 0px 0px 1vw 1vw rgba(0, 0, 0, 0.45);
+}
+
+h5 {
+  color: rgba(246, 246, 246, 0.80);
+  font-size: 0.90vw;
+  font-weight: 300;
+}
+
+.annoying_ad_link,
+.annoying_ad_text {
+  color: var(--ads-secondary-text-color);
+  font-size: 0.75vw;
+  font-weight: 200;
+}
+.annoying_ad_link {
+  text-decoration: underline;
+  text-underline-offset: 0.25vh;
+}
+
+.annoying_ads_download_buttons_vertical_flexbox {
+  grid-area: 1 / 3 / span 1 / span 2;
+  row-gap: 2.5vh;
+  flex-direction: column;
+}
+
+.annoying_ad_download_button {
+  position: relative;
+  background-color: #49F569;
+
+  border: none;
+  border-radius: 5vw;
+  padding: 2.25vh 4vw;
+  column-gap: 1.25vw;
+
+  box-shadow: 0px 0px 8px 8px rgba(22, 22, 22, 0.25);
+  transition: all 0.15s;
+}
+.annoying_ad_download_button:hover {
+  background-color: #4ac761;
+  box-shadow: 0px 0px 6px 6px rgba(25, 25, 25, 0.40);
+}
+.annoying_ad_download_button:active {
+  opacity: 0.8;
+}
+
+.annoying_ad_download_button_image {
+  height: 3.2vw;
+}
+
+.annoying_ad_download_button_text {
+  font-size: 2.95vw;
+  color: rgba(255, 255, 255, 1.0);
+}
+
+.annoying_ad_download_button_additional_software_text {
+  color: rgba(26, 26, 26, 0.40);
+  font-size: 1vw;
+
+  position: absolute;
+  bottom: 0.45vh;
+  text-align: center;
+}
+
+
+/* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION *//* FOOTER SECTION */
+footer {
+  margin-top: 12vh;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: center;
+
+  column-gap: 3vw;
+  padding: 2vh 3.5vw;
+
+  background-color: var(--header-and-footer-background-color);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  box-shadow: 0px 0px 16px 16px var(--header-and-footer-background-color);
+}
+
+.footer_name_plate {
+  text-align: center;
+  justify-self: start;
+  background-color: var(--header-buttons-background-color);
+  border: none;
+  border-radius: 1.1vh;
+  padding: 0px 1vw;
+
+  color: var(--footer-text-color);
+  font-family: var(--footer-text-font);
+  font-size: 1.25vw;
+
+  box-shadow: var(--footer-plates-box-shadow);
+}
+
+.footer_lab_text_plate {
+  text-align: center;
+  background-color: #E9DDFF;
+  border: none;
+  border-radius: 1.35vh;
+  padding: 0px 2vw;
+
+  color: var(--footer-text-color);
+  font-family: var(--footer-text-font);
+  font-size: 1.70vw;
+
+  box-shadow: var(--footer-plates-box-shadow);
+}
+
+.footer_socials_plate {
+  justify-self: end;
+  justify-content: space-between;
+  column-gap: 0.85vw; 
+  
+  background-color: var(--header-buttons-background-color);
+  border: none;
+  border-radius: 1.1vh;
+  padding: 1.25vh 1.25vw;
+
+  box-shadow: var(--footer-plates-box-shadow);
+}
+
+.footer_social_icon {
+  width: 2vw;
+}
+
+.footer_discord_button {
+  border: 1px solid var(--discord-fill-color);
+}
+
+.footer_telegram_button {
+  border: 1px solid var(--telegram-fill-color);
+}
+
+.footer_youtube_button {
+  border: 1px solid var(--youtube-fill-color);
+}
+
+.footer_github_button {
+  border: 1px solid var(--github-fill-color);
+}
+
+.footer_discord_button:hover {
+  background-color: var(--discord-fill-color);
+}
+
+.footer_telegram_button:hover {
+  background-color: var(--telegram-fill-color);
+}
+
+.footer_youtube_button:hover {
+  background-color: var(--youtube-fill-color);
+}
+
+.footer_github_button:hover {
+  background-color: var(--github-fill-color);
+}
+
+
+
+
+/* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES *//* MEDIA QUERIES */
+
+/* 920px *//* 920px *//* 920px *//* 920px *//* 920px *//* 920px *//* 920px */
+@media (max-width: 920px) {
+  .promo_blocks_grid {
+    width: 75%;
+    grid-template: repeat(3, auto) / auto;
+    row-gap: 5vw;
+  }
+
+  h3 {
+    font-size: 2.7vw;
+  }
+
+  .advertisement_content_bottom_section {
+    flex-direction: row;
+    column-gap: min(5vh, 2vw);
+  }
+
+  .reasons_section_background {
+    padding: 4vw;
+  }
+
+  .reviews_section_background {
+    grid-area: 3 / 1 / span 1 / span 1;
+    grid-template: repeat(3, auto) / repeat(2, 1fr);
+  }
+
+  .review_title_foreground {
+    grid-area: 1 / 1 / span 1 / span 2;
+  }
+
+  .review_section_foreground {
+    width: 80%;
+    margin: 0px auto;
+  }
+
+  h4 {
+    font-size: 1.5vw;
+  }
+
+  .review_section_text {
+    font-size: 1.25vw;
+  }
+
+  .annoying_ads_grid {
+    width: 75%;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10%;
+    row-gap: 8%;
+  }
+
+  .annoying_ads_download_buttons_vertical_flexbox {
+    grid-area: 2 / 1 / span 1 / span 4;
+  }
+}
+
+/* 640px *//* 640px *//* 640px *//* 640px *//* 640px *//* 640px *//* 640px */
+@media screen and (max-width: 640px) {
+  .download_amigo_button_bottom_section {
+    padding-bottom: 0.12vh;
+  }
+
+  .advertisement_section_background {
+    padding: 4vw;
+  }
+
+  h3 {
+    font-size: 3.6vw;
+  }
+
+  .advertisement_section_text {
+    font-size: 2.25vw;
+  }
+
+  li {
+    font-size: 2.1vw;
+  }
+  
+
+  .reviews_section_background { 
+    grid-template: repeat(5, auto) / 1fr;
+    padding: 4vw;
+  }
+
+  .review_title_foreground {
+    grid-area: 1 / 1 / span 1 / span 1;
+  }
+
+  h4 {
+    font-size: 2.6vw;
+  }
+
+  .review_section_text {
+    font-size: 2.1vw;
+  }
+
+  .annoying_ads_grid {
+    width: 50%;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 4%;
+  }
+
+  h5 {
+    font-size: 1.8vw;
+  }
+
+  .annoying_ad_link,
+  .annoying_ad_text {
+    font-size: 1.4vw;
+  }
+
+  .annoying_ads_download_buttons_vertical_flexbox {
+    grid-area: 3 / 1 / span 1 / span 2;
+  }
+
+  .annoying_ad_download_button_image {
+    height: 5.5vw;
+  }
+
+  .annoying_ad_download_button_text {
+    font-size: 5vw;
+  }
+
+  .annoying_ad_download_button_additional_software_text {
+    font-size: 1.75vw;
+    bottom: 0.9vh;
+  }
+
+  .footer_name_plate {
+    font-size: 2.25vw;
+  }
+
+  .footer_lab_text_plate {
+    font-size: 3vw;
+  }
+
+  .footer_social_icon {
+    width: 3.5vw;
+  }
+}
