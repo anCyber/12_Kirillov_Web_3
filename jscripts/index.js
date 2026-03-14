@@ -1,18 +1,10 @@
+const GRAY = 0;
+const YELLOW = 1;
+const GREEN = 2;
 
-let KEYS = ["first", "second", "third", "fourth", "fifth"];
+const MIN_NUMBER = 10000
+const MAX_NUMBER = 100000
 
-// 0 = grey; 1 = yellow; 2 = green;
-let GUESSED_COLORS = {
-    [KEYS[0]]: 0,
-    [KEYS[1]]: 0,
-    [KEYS[2]]: 0,
-    [KEYS[3]]: 0,
-    [KEYS[4]]: 0
-};
-
-
-
-/* Creates an object consisting every digit of a given number as a separate key */ 
 function digitfyNumber(number) {
     let firstDigit = Math.floor(number / 10000);
     let secondDigit = Math.floor(number / 1000) - (firstDigit * 10);
@@ -20,126 +12,88 @@ function digitfyNumber(number) {
     let fourthDigit = Math.floor(number / 10) - (thirdDigit * 10) - (secondDigit * 100) - (firstDigit * 1000);
     let fifthDigit = number - (fourthDigit * 10) - (thirdDigit * 100) - (secondDigit * 1000) - (firstDigit * 10000);
 
-    let digitfiedNumber = {
-        [KEYS[0]]: firstDigit,
-        [KEYS[1]]: secondDigit,
-        [KEYS[2]]: thirdDigit,
-        [KEYS[3]]: fourthDigit,
-        [KEYS[4]]: fifthDigit
-    };
+    let digitfiedNumber = [firstDigit, secondDigit, thirdDigit, fourthDigit, fifthDigit];
     return digitfiedNumber;
 }
 
-
+function checkInput(userInput) {
+    for (let symbol of userInput) {
+        if ((symbol.charCodeAt(0) < 48) || (symbol.charCodeAt(0) > 57)) {
+            alert("Вводи только цифры!");
+            userInput = prompt(`${allGuessesString}\n Давай ещё раз. Введи 5-значное число:`);
+            checkInput(userInput);
+        }
+        else {
+            return;
+        }
+    }
+}
 
 
 function startGame() {
-    const MIN_NUMBER = 10000;
-    const MAX_NUMBER = 100000;
-    const numleAnswer = Math.floor(Math.random() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER);
-    const numleAnswerDigits = digitfyNumber(numleAnswer);
-
-    let repeatingDigitsInAnswer = checkForRepeatingDigits(numleAnswerDigits);
-
-    let usersGuess = parseInt(prompt(`Правильное число: [${numleAnswer}]. COLORS: [${GUESSED_COLORS[KEYS[0]]}][${GUESSED_COLORS[KEYS[1]]}][${GUESSED_COLORS[KEYS[2]]}][${GUESSED_COLORS[KEYS[3]]}][${GUESSED_COLORS[KEYS[4]]}]   Введите пятизначное число:`));
-    let usersGuessDigits = digitfyNumber(usersGuess);
-    let repeatingDigitsInGuess = checkForRepeatingDigits(usersGuessDigits);
-    checkAnswer(usersGuessDigits, numleAnswerDigits, repeatingDigitsInGuess, repeatingDigitsInAnswer);
-    
-    while(usersGuess != numleAnswer) {
-        usersGuess = parseInt(prompt(`Правильное число: [${numleAnswer}]. COLORS: [${GUESSED_COLORS[KEYS[0]]}][${GUESSED_COLORS[KEYS[1]]}][${GUESSED_COLORS[KEYS[2]]}][${GUESSED_COLORS[KEYS[3]]}][${GUESSED_COLORS[KEYS[4]]}]   Введите пятизначное число:`));
-        usersGuessDigits = digitfyNumber(usersGuess);
-        repeatingDigitsInGuess = checkForRepeatingDigits(usersGuessDigits);
-        checkAnswer(usersGuessDigits, numleAnswerDigits, repeatingDigitsInGuess, repeatingDigitsInAnswer);
+    if (!confirm("Будешь в Numble?")){
+        alert("Ну и зачем тогда вообще жмал...");
+        return;
     }
+
+    const numbleAnswer = Math.floor(Math.random() * (MAX_NUMBER - MIN_NUMBER)) + MIN_NUMBER;
+    const numbleAnswerDigits = digitfyNumber(numbleAnswer);
+    
+    let allGuessesString = "";
+
+    let usersGuess = -1;
+    while (usersGuess != numbleAnswer) {
+        usersGuess = prompt(`${allGuessesString}\n Введи 5-значное число:`);
+        checkInput(usersGuess);
+
+        if (usersGuess == null) {
+            alert(`Не хочешь значит играть((. Если что загаданным числом было: ${numbleAnswer}. Пока!`);
+            return;
+        }
+
+        if ((usersGuess < MIN_NUMBER) || (usersGuess >= MAX_NUMBER) || (usersGuess == NaN)) {
+            alert("ало число должно быть пятизначным");
+        }
+        else {
+            let usersGuessDigitsArray = digitfyNumber(usersGuess);
+            let digitCorrectColors = checkAnswer(usersGuessDigitsArray, numbleAnswerDigits);
+                
+            allGuessesString += `${usersGuess} | ${digitCorrectColors}\n`;
+        }
+    }
+    alert(`Точно! Числом и вправду было ${numbleAnswer}. Пока!`);
 }
 
-function checkAnswer(usersGuessDigits, numleAnswerDigits, repeatingDigitsInGuess, repeatingDigitsInAnswer) {
-    GUESSED_COLORS = {
-        [KEYS[0]]: 0,
-        [KEYS[1]]: 0,
-        [KEYS[2]]: 0,
-        [KEYS[3]]: 0,
-        [KEYS[4]]: 0
-    };   
 
-    for (digitKey of KEYS) {
-        for (correctDigitKey of KEYS) {
+function checkAnswer(usersGuess, answer) {
+    let COLORS = [GRAY, GRAY, GRAY, GRAY, GRAY];
+    let wereAnswerDigitsTypedArray = [false, false, false, false, false];
+    let wereGuessDigitsTypedArray = [false, false, false, false, false];
 
-            if (usersGuessDigits[digitKey] in repeatingDigitsInAnswer) {
-                repeatingDigitsInAnswer[usersGuessDigits[digitKey]] --;
-            }
-            
-            if (usersGuessDigits[digitKey] == numleAnswerDigits[correctDigitKey]) {
-                if (digitKey == correctDigitKey) {
-                    GUESSED_COLORS[correctDigitKey] = 2;  // Paint position green if the indexes are the same;
-                }
-                else if (GUESSED_COLORS[correctDigitKey] != 2) {
-                    GUESSED_COLORS[correctDigitKey] = 1;  // Otherwise paint in yellow;
-                }
-
-            }
+    for (let digitIndex = 0; digitIndex < 5; digitIndex++) {
+        if (usersGuess[digitIndex] == answer[digitIndex]) {
+            COLORS[digitIndex] = GREEN;
+            wereAnswerDigitsTypedArray[digitIndex] = true;
+            wereGuessDigitsTypedArray[digitIndex] = true;
         }
     }
 
-}
-
-
-if (usersGuessDigits[digitKey] in repeatingDigitsInAnswer) { // CHecked if digit is present in the answer
-    repeatingDigitsInAnswer[usersGuessDigits[digitKey]] --;
-}
-/*if (repeatingDigitsInAnswer[correctDigitKeyKey] > 1) {
-    if (repeatingDigitsInGuess[digitKey] > 1) {
-        
-    }
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-function checkForRepeatingDigits(numleAnswerDigits) {   
-    let digitRepeats = {
-        [numleAnswerDigits[KEYS[0]]]: 0,
-        [numleAnswerDigits[KEYS[1]]]: 0,
-        [numleAnswerDigits[KEYS[2]]]: 0,
-        [numleAnswerDigits[KEYS[3]]]: 0,
-        [numleAnswerDigits[KEYS[4]]]: 0
-    };
-    let skipRepeatedKeys = [];
-
-    for (repeatingDigitKey of KEYS) {
-        if (repeatingDigitKey in skipRepeatedKeys) {
+    for (let digitIndex = 0; digitIndex < 5; digitIndex++) {
+        if (wereGuessDigitsTypedArray[digitIndex] == true) {
             continue;
         }
-        for (iteratingDigitKey of KEYS) {
-            if (numleAnswerDigits[repeatingDigitKey] == numleAnswerDigits[iteratingDigitKey]) {
-                digitRepeats[numleAnswerDigits[repeatingDigitKey]] ++;
-                skipRepeatedKeys.push(iteratingDigitKey);
+        else {
+            for (let iteratingDigitIndex = 0; iteratingDigitIndex < 5; iteratingDigitIndex++) {
+                if ((wereAnswerDigitsTypedArray[iteratingDigitIndex] == false) && (usersGuess[digitIndex] == answer[iteratingDigitIndex])) {
+                    COLORS[digitIndex] = YELLOW;
+                    wereAnswerDigitsTypedArray[iteratingDigitIndex] = true;
+                    break;
+                }
             }
         }
     }
-    return digitRepeats;
+    return COLORS;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const game_activation_button = document.getElementById("game_activation");

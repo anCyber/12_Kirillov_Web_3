@@ -176,6 +176,7 @@ header {
 }
 
 .header_left_button {
+  flex-direction: column;
   padding: min(1.0vh, 0.65vw);
   background-color: var(--header-buttons-background-color);
   border: none;
